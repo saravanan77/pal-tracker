@@ -9,6 +9,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import javax.sql.DataSource;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.util.Calendar;
 import java.util.List;
 
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
@@ -79,7 +80,7 @@ public class JdbcTimeEntryRepository implements TimeEntryRepository {
         rs.getLong("id"),
         rs.getLong("project_id"),
         rs.getLong("user_id"),
-        rs.getDate("date").toLocalDate(),
+        rs.getDate("date", Calendar.getInstance()).toLocalDate(),
         rs.getInt("hours")
     );
 
